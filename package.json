@@ -2,6 +2,7 @@
   "name": "react-test-project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://akutuzova11.github.io/react-pizza-go/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
     "@testing-library/dom": "^10.4.0",
