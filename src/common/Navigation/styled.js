@@ -74,7 +74,6 @@ export const MenuGrouped = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
 `;
 
 export const List = styled.ul`
@@ -94,10 +93,10 @@ export const Item = styled.li`
 `;
 
 export const Sorting = styled.p`
-margin: 0;
-margin-right: 60px;
-right: 0;
-position: absolute;
+  margin: 0;
+  margin-right: 60px;
+  right: 0;
+  position: absolute;
 `;
 
 export const SortContainer = styled.div`
@@ -106,5 +105,18 @@ export const SortContainer = styled.div`
 `;
 
 export const SortLabel = styled.label`
-  margin-right: 8px;
+  margin-right: 4px;
+  font-weight: 500;
+  color: #333;
+`;
+
+export const StyledDropdownIndicator = styled.div`
+  display: flex;
+  align-items: center; /* Vertically centers the icon */
+  justify-content: center;
+  color: #fe5f1e;
+    margin-left: -10px;
+  &:hover {
+    color: #ff7a3d;
+  }
 `;
