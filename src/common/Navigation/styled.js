@@ -1,18 +1,16 @@
 import { ReactComponent as LogoStyled } from "../../images/Logo.svg";
 import { ReactComponent as Basket } from "../../images/Basket.svg";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const NavigationStyled = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  position sticky;
-  top: 0;
-  z-index: 1000;
 
-   @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
-  align-items: center;
-justify-content: center;
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -139,10 +137,34 @@ export const Item = styled.li`
   font-weight: 500;
   background-color: ${({ theme }) => theme.color.lightgray};
   border-radius: 30px;
-  padding: 15px 25px;
+  padding: 15px 0;
+
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.color.black};
+    color: ${({ theme }) => theme.color.white};
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.color.black};
+    color: ${({ theme }) => theme.color.white};
+  }
 `;
 
-export const Sorting = styled.p`
+export const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.color.black};
+  padding: 15px 25px;
+  &:hover {
+    color: ${({ theme }) => theme.color.white};
+  }
+
+  &:active {
+    color: ${({ theme }) => theme.color.white};
+  }
+`;
+
+export const SortSection = styled.div`
   margin: 0;
   margin-right: 60px;
   right: 0;
@@ -151,27 +173,5 @@ export const Sorting = styled.p`
   @media (max-width: ${({ theme }) => theme.breakpoint.laptop}px) {
     position: relative;
     margin: 0;
-  }
-`;
-
-export const SortContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const SortLabel = styled.label`
-  margin-right: 4px;
-  font-weight: 500;
-  color: #333;
-`;
-
-export const StyledDropdownIndicator = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fe5f1e;
-  margin-left: -10px;
-  &:hover {
-    color: #ff7a3d;
   }
 `;
