@@ -74,6 +74,16 @@ function App() {
       <Navigation setSortedItems={setSortedItems} />
       <Routes>
         <Route
+          path="/"
+          element={
+            <PizzaList
+              pizzaData={filterPizzas("All")}
+              availableTypes={availableTypes}
+              availableSizes={availableSizes}
+            />
+          }
+        />
+        <Route
           path={toAll()}
           element={
             <PizzaList
