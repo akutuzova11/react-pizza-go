@@ -1,4 +1,4 @@
-import Select from 'react-select';
+import Select from "react-select";
 
 export const customStyles = {
   control: (provided) => ({
@@ -6,13 +6,31 @@ export const customStyles = {
     background: "transparent",
     display: "flex",
     flexWrap: "nowrap",
-    borderColor: "hsl(0deg 78.56% 55.56%);",
-
+    border: "none",
+    outline: "none",
+    boxShadow: "none",
+    cursor: "pointer",
+    fontWeight: 500,
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: "#FE5F1E",
+  }),
+  input: (provided) => ({
+    ...provided,
+    opacity: 0,
+    width: 0,
+    padding: 0,
+    margin: 0,
+    position: "absolute",
+  }),
+  indicatorSeparator: () => ({
+    display: "none",
   }),
   option: (provided, state) => ({
     ...provided,
-    backgroundColor: state.isSelected ? 'orange' : 'transparent',
-    color: state.isSelected ? 'white' : 'black',
-
+    backgroundColor: state.isSelected ? "#fff8f4" : "transparent",
+    color: state.isSelected ? "#FE5F1E" : "black",
+    fontWeight: 500,
   }),
 };
