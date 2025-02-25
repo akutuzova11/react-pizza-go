@@ -29,8 +29,18 @@ export const customStyles = {
   }),
   option: (provided, state) => ({
     ...provided,
-    backgroundColor: state.isSelected ? "#fff8f4" : "transparent",
-    color: state.isSelected ? "#FE5F1E" : "black",
+    backgroundColor:  "transparent",
+    color: "black",
     fontWeight: 500,
+    ":hover": {
+      backgroundColor: "#fff8f4", // Add hover effect background
+      color: "#FE5F1E", // Change text color on hover
+    },
+  }),
+  menu: (provided) => ({
+    ...provided,
+    boxShadow: "0px 0px 24px -8px rgba(66, 68, 90, 1)", 
   }),
 };
+
+
