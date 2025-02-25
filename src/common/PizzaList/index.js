@@ -1,16 +1,27 @@
-import { Wrapper, Header, List, Item } from "./styled";
+import { PizzaItem } from "../PizzaItem/index";
+import { Wrapper, Header } from "./styled";
+import Pizza from "../../images/pizza.png";
 
-export const PizzaList = ({ sortedItems }) => {
+export const PizzaList = ({ pizzaData=[], onClickAddPizza }) => {
+  console.log("PizzaList received:", pizzaData);
+  if (!pizzaData || pizzaData.length === 0) {
+    return <div>No pizzas available</div>;
+  }
   return (
-    <Wrapper>
+    <>
       <Header>Available Pizzas</Header>
-      <List>
-        {sortedItems.map((item) => (
-          <Item key={item.id}>
-            {item.name} - ${item.price}
-          </Item>
+      <Wrapper>
+        {pizzaData.map(({ id, name, imageUrl, price }) => (
+          <PizzaItem
+            key={id}
+            id={id}
+            name={name}
+            imageUrl={imageUrl || Pizza}
+            price={price}
+            onClickAddPizza={onClickAddPizza}
+          />
         ))}
-      </List>
-    </Wrapper>
+      </Wrapper>
+    </>
   );
 };
