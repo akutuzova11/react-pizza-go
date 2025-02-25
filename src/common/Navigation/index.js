@@ -30,12 +30,12 @@ export const Navigation = ({setSortedItems}) => {
       <HorizontalLine />
       <MenuGrouped>
         <List>
-          <Item>All</Item>
-          <Item>Meat Lovers</Item>
-          <Item>Vegetarian</Item>
-          <Item>BBQ</Item>
-          <Item>Spicy</Item>
-          <Item>Calzone</Item>
+          <Item>🍕 All</Item>
+          <Item>🥩 Meat Lovers</Item>
+          <Item>🌿 Vegetarian</Item>
+          <Item>🍗 BBQ</Item>
+          <Item>🌶️ Spicy</Item>
+          <Item>🥟 Calzone</Item>
         </List>
         <Sorting>
           <SortingFilter setSortedItems={setSortedItems} />
