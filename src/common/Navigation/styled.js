@@ -9,11 +9,21 @@ export const NavigationStyled = styled.nav`
   position sticky;
   top: 0;
   z-index: 1000;
+
+   @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+  align-items: center;
+justify-content: center;
+  }
 `;
 
 export const Logo = styled(LogoStyled)`
   height: 80px;
   width: 130px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+    height: 50px;
+    width: 100px;
+  }
 `;
 
 export const Text = styled.p`
@@ -21,11 +31,20 @@ export const Text = styled.p`
   font-size: 16px;
   font-weight: 500;
   color: ${({ theme }) => theme.color.darkgray};
+  line-height: 1.2;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+    font-size: 14px;
+    text-align: center;
+    white-space: normal;
+    margin-top: 0;
+    display: inline-block;
+  }
 `;
 
 export const BasketButton = styled.div`
   padding: 10px 20px;
-  margin-top: 60px;
+  margin-top: 80px;
   margin-right: 60px;
   position: absolute;
   top: 0;
@@ -36,11 +55,21 @@ export const BasketButton = styled.div`
   justify-content: center;
   align-items: center;
   gap: 8px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+    position: relative;
+    margin: auto;
+    padding: 10px 82px;
+  }
 `;
 
 export const Payment = styled.span`
   font-size: 16px;
   color: ${({ theme }) => theme.color.white};
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+    font-size: 14px;
+  }
 `;
 
 export const VerticalLine = styled.div`
@@ -55,11 +84,20 @@ export const VerticalLine = styled.div`
 export const BasketIcon = styled(Basket)`
   width: 16px;
   height: 16px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+    width: 14px;
+    height: 14px;
+  }
 `;
 
 export const OrdersNumber = styled.span`
   font-size: 16px;
   color: ${({ theme }) => theme.color.white};
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+    font-size: 14px;
+  }
 `;
 
 export const HorizontalLine = styled.div`
@@ -74,13 +112,25 @@ export const MenuGrouped = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.laptop}px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const List = styled.ul`
   padding: 0;
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.laptop}px) {
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const Item = styled.li`
@@ -97,6 +147,11 @@ export const Sorting = styled.p`
   margin-right: 60px;
   right: 0;
   position: absolute;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.laptop}px) {
+    position: relative;
+    margin: 0;
+  }
 `;
 
 export const SortContainer = styled.div`
@@ -112,10 +167,10 @@ export const SortLabel = styled.label`
 
 export const StyledDropdownIndicator = styled.div`
   display: flex;
-  align-items: center; /* Vertically centers the icon */
+  align-items: center;
   justify-content: center;
   color: #fe5f1e;
-    margin-left: -10px;
+  margin-left: -10px;
   &:hover {
     color: #ff7a3d;
   }
