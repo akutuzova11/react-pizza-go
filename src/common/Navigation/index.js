@@ -1,4 +1,12 @@
-import { SortingFilter } from "./SortingFilter";
+import { SortingFilter } from "../SortingFilter";
+import {
+  toAll,
+  toMeatLovers,
+  toVegetarian,
+  toBBQ,
+  toSpicy,
+  toCalzone,
+} from "../../routes";
 import {
   NavigationStyled,
   Logo,
@@ -12,11 +20,11 @@ import {
   MenuGrouped,
   List,
   Item,
-  Sorting,
+  StyledNavLink,
+  SortSection,
 } from "./styled";
 
-export const Navigation = ({setSortedItems}) => {
-
+export const Navigation = ({ setSortedItems }) => {
   return (
     <NavigationStyled>
       <Logo />
@@ -30,16 +38,33 @@ export const Navigation = ({setSortedItems}) => {
       <HorizontalLine />
       <MenuGrouped>
         <List>
-          <Item>🍕 All</Item>
-          <Item>🥩 Meat Lovers</Item>
-          <Item>🌿 Vegetarian</Item>
-          <Item>🍗 BBQ</Item>
-          <Item>🌶️ Spicy</Item>
-          <Item>🥟 Calzone</Item>
+          <Item>
+            <StyledNavLink to={toAll()}>🍕 All</StyledNavLink>
+          </Item>
+
+          <Item>
+            <StyledNavLink to={toMeatLovers()}>🥩 Meat Lovers</StyledNavLink>
+          </Item>
+
+          <Item>
+            <StyledNavLink to={toVegetarian()}>🌿 Vegetarian</StyledNavLink>
+          </Item>
+
+          <Item>
+            <StyledNavLink to={toBBQ()}>🍗 BBQ</StyledNavLink>
+          </Item>
+
+          <Item>
+            <StyledNavLink to={toSpicy()}>🌶️ Spicy</StyledNavLink>
+          </Item>
+
+          <Item>
+            <StyledNavLink to={toCalzone()}>🥟 Calzone</StyledNavLink>
+          </Item>
         </List>
-        <Sorting>
+        <SortSection>
           <SortingFilter setSortedItems={setSortedItems} />
-        </Sorting>
+        </SortSection>
       </MenuGrouped>
     </NavigationStyled>
   );
