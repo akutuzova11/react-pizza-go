@@ -9,7 +9,7 @@ import {
 } from "../../routes";
 import {
   NavigationStyled,
-  Logo,
+  Logo, LogoIcon,
   Text,
   BasketButton,
   Payment,
@@ -27,7 +27,9 @@ import {
 export const Navigation = ({ setSortedItems }) => {
   return (
     <NavigationStyled>
-      <Logo />
+      <Logo to={toAll()}>
+        <LogoIcon />
+      </Logo>
       <Text>the most delicious pizza in the universe</Text>
       <BasketButton>
         <Payment>10 euros</Payment>
