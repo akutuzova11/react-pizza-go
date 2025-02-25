@@ -14,7 +14,18 @@ export const NavigationStyled = styled.nav`
   }
 `;
 
-export const Logo = styled(LogoStyled)`
+export const Logo = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05); /* Slightly zooms in the logo */
+  }
+`;
+
+export const LogoIcon = styled(LogoStyled)`
   height: 80px;
   width: 130px;
 
