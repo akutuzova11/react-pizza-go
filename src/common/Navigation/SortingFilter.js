@@ -1,7 +1,21 @@
 import { useState } from "react";
-import Select from "react-select";
+import Select, { components } from "react-select";
+import { TbArrowBadgeUpFilled, TbArrowBadgeDownFilled } from "react-icons/tb";
 import { customStyles } from "./customStyles";
-import { SortContainer, SortLabel } from "./styled";
+import { SortContainer, SortLabel, StyledDropdownIndicator } from "./styled";
+
+const DropdownIndicator = (props) => {
+  const { selectProps } = props;
+  const isOpen = selectProps.menuIsOpen;
+
+  return (
+    <components.DropdownIndicator {...props}>
+      <StyledDropdownIndicator isOpen={isOpen}>
+        {isOpen ? <TbArrowBadgeUpFilled /> : <TbArrowBadgeDownFilled />}
+      </StyledDropdownIndicator>
+    </components.DropdownIndicator>
+  );
+};
 
 export const SortingFilter = ({ setSortedItems }) => {
   const [sortOption, setSortOption] = useState("nameAsc");
@@ -38,6 +52,7 @@ export const SortingFilter = ({ setSortedItems }) => {
         onChange={handleSortChange}
         options={options}
         styles={customStyles}
+        components={{ DropdownIndicator }}
       />
     </SortContainer>
   );
