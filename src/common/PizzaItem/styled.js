@@ -22,6 +22,7 @@ export const PizzaImage = styled.img`
   max-width: 100%;
   height: auto;
   display: block;
+  max-height: 300px;
 `;
 
 export const Details = styled.div`
@@ -29,12 +30,16 @@ export const Details = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  max-wisth: 320px;
 `;
 
 export const PizzaTitle = styled.h2`
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 1%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Selector = styled.div`
@@ -43,6 +48,9 @@ export const Selector = styled.div`
   gap: 8px;
   background-color: ${({ theme }) => theme.color.lightgray};
   border-radius: 10px;
+  padding: 8px;
+  width: 100%;
+  width: 300px;
 `;
 
 export const SelectorList = styled.ul`
@@ -52,33 +60,39 @@ export const SelectorList = styled.ul`
   align-items: center;
   justify-content: center;
   padding: 0;
+  margin: 0;
 `;
 
 export const SelectorItem = styled.li`
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 1.5%;
-  padding: 0 10px;
+  height: 32px;
+  width: ${({ $isSize }) => ($isSize ? "85px" : "130px")};
+  border-radius: 5px;
+  background: ${({ $isActive, theme }) =>
+    $isActive ? theme.color.white : "transparent"};
+  box-shadow: ${({ $isActive }) =>
+    $isActive ? "0px 2px 4px rgba(0, 0, 0, 0.04)" : "none"};
+  cursor: ${({ $isActive }) => ($isActive ? "default" : "pointer")};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
 
-  &.active {
-    background: ${({ theme }) => theme.color.white};
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
-    border-radius: 5px;
-    cursor: auto;
-  }
-
-  &.disabled {
-    opacity: 0.4;
-    pointer-events: none;
+  &:hover {
+    color: ${({ $isActive, theme }) =>
+      $isActive ? theme.color.black : theme.color.darkorange};
   }
 `;
 
 export const BottomSection = styled.div`
   display: flex;
-  justify-items: center;
+  justify-content: space-between;
   align-items: center;
   margin-top: 16px;
-  gap: 32px;
+  width: 100%;
+  width: 300px;
 `;
 
 export const Price = styled.div`
@@ -95,4 +109,9 @@ export const Button = styled.button`
   border: ${({ theme }) => theme.color.darkorange} 1px solid;
   border-radius: 30px;
   padding: 10px 20px;
+  cursor: pointer;
+  &:hover{
+  background-color: ${({ theme }) => theme.color.darkorange};
+    color: ${({ theme }) => theme.color.white};
+  }
 `;
