@@ -66,7 +66,7 @@ function App() {
     },
   ]);
 
-  const [basketCount, setBasketCount] = useState(0);
+  const [basket, setBasket] = useState({});
 
   const availableTypes = ["thin", "traditional"];
   const availableSizes = [24, 34, 39];
@@ -81,7 +81,13 @@ function App() {
   };
 
   const onClickAddPizza = (pizzaObj) => {
-    setBasketCount((prevCount) => prevCount + 1);
+    setBasket((prevBasket) => {
+      const updatedBasket = {
+        ...prevBasket,
+        [pizzaObj.id]: (prevBasket[pizzaObj.id] || 0) + 1,
+      };
+      return updatedBasket;
+    });
   };
 
   function FilteredPizzaList() {
@@ -100,13 +106,14 @@ function App() {
         availableTypes={availableTypes}
         availableSizes={availableSizes}
         onClickAddPizza={onClickAddPizza}
+        basket={basket}
       />
     );
   }
 
   return (
     <Router>
-      <Navigation setSortedItems={setSortedItems} basketCount={basketCount} />
+      <Navigation setSortedItems={setSortedItems} basket={basket} />
       <Routes>
         <Route path="/" element={<Navigate to={toAll()} replace />} />
         {Object.keys(categoryRoutes).map((path) => (

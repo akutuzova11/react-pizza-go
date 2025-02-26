@@ -7,6 +7,7 @@ export const PizzaList = ({
   onClickAddPizza,
   availableSizes,
   availableTypes,
+  basket,
 }) => {
   if (!pizzaData || pizzaData.length === 0) {
     return <div>No pizzas available</div>;
@@ -25,6 +26,7 @@ export const PizzaList = ({
             availableTypes={availableTypes} // Pass types
             availableSizes={availableSizes}
             onClickAddPizza={onClickAddPizza}
+            basket={basket}
           />
         ))}
       </Wrapper>

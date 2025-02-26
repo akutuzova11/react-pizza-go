@@ -25,7 +25,11 @@ import {
   SortSection,
 } from "./styled";
 
-export const Navigation = ({ setSortedItems, basketCount }) => {
+export const Navigation = ({ setSortedItems, basket }) => {
+  const totalItemsInBasket = Object.values(basket).reduce(
+    (acc, quantity) => acc + quantity,
+    0
+  );
   return (
     <NavigationStyled>
       <Logo to={toAll()}>
@@ -36,7 +40,7 @@ export const Navigation = ({ setSortedItems, basketCount }) => {
         <Payment>10 euros</Payment>
         <VerticalLine />
         <BasketIcon />
-        <OrdersNumber>{basketCount}</OrdersNumber>
+        <OrdersNumber>{totalItemsInBasket}</OrdersNumber>
       </BasketButton>
       <HorizontalLine />
       <MenuGrouped>
