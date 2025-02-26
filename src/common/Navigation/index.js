@@ -48,7 +48,7 @@ export const Navigation = ({ setSortedItems, basket, items }) => {
       </Logo>
       <Text>the most delicious pizza in the universe</Text>
       <BasketButton>
-        <Payment>{totalPrice.toFixed(2)} euros</Payment>
+        <Payment>{totalPrice.toFixed(2)} €</Payment>
         <VerticalLine />
         <BasketIcon />
         <OrdersNumber>{totalItemsInBasket}</OrdersNumber>

@@ -83,7 +83,7 @@ export const PizzaItem = ({
           </SelectorList>
         </Selector>
         <BottomSection>
-          <Price>from ${price}</Price>
+          <Price>from {price} €</Price>
           <Button onClick={onAddPizza} disabled={loading} $loading={loading}>
             {loading ? (
               <LoadingIcon />
