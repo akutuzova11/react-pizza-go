@@ -2,8 +2,12 @@ import { PizzaItem } from "../PizzaItem/index";
 import { Wrapper, Header } from "./styled";
 import Pizza from "../../images/pizza.png";
 
-export const PizzaList = ({ pizzaData=[], onClickAddPizza }) => {
-  console.log("PizzaList received:", pizzaData);
+export const PizzaList = ({
+  pizzaData = [],
+  onClickAddPizza,
+  availableSizes,
+  availableTypes,
+}) => {
   if (!pizzaData || pizzaData.length === 0) {
     return <div>No pizzas available</div>;
   }
@@ -18,6 +22,8 @@ export const PizzaList = ({ pizzaData=[], onClickAddPizza }) => {
             name={name}
             imageUrl={imageUrl || Pizza}
             price={price}
+            availableTypes={availableTypes} // Pass types
+            availableSizes={availableSizes}
             onClickAddPizza={onClickAddPizza}
           />
         ))}
