@@ -18,12 +18,13 @@ export const PizzaItem = ({
   name,
   imageUrl,
   price,
-  availableTypes=[],
-  availableSizes=[],
+  availableTypes = [],
+  availableSizes = [],
   onClickAddPizza,
 }) => {
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
+  const [quantity, setQuantity] = useState(0);
 
   const onSelectType = (index) => setActiveType(index);
   const onSelectSize = (index) => setActiveSize(index);
@@ -37,15 +38,13 @@ export const PizzaItem = ({
       size: availableSizes[activeSize],
       type: availableTypes[activeType],
     };
+    setQuantity(quantity + 1);
     onClickAddPizza(pizzaObj);
   };
-
-  console.log("PizzaItem received:", { id, name, imageUrl, price });
 
   return (
     <PizzaContainer>
       <PizzaImageWrapper>
-        {" "}
         <PizzaImage src={imageUrl} alt={name} />
       </PizzaImageWrapper>
       <Details>
@@ -53,14 +52,24 @@ export const PizzaItem = ({
         <Selector>
           <SelectorList>
             {availableTypes.map((type, index) => (
-              <SelectorItem key={type} onClick={() => onSelectType(index)}>
+              <SelectorItem
+                key={type}
+                onClick={() => onSelectType(index)}
+                $isActive={activeType === index}
+                $isSize={false}
+              >
                 {type}
               </SelectorItem>
             ))}
           </SelectorList>
           <SelectorList>
             {availableSizes.map((size, index) => (
-              <SelectorItem key={size} onClick={() => onSelectSize(index)}>
+              <SelectorItem
+                key={size}
+                onClick={() => onSelectSize(index)}
+                $isActive={activeSize === index}
+                $isSize={true}
+              >
                 {size} cm
               </SelectorItem>
             ))}
@@ -69,7 +78,7 @@ export const PizzaItem = ({
         <BottomSection>
           <Price>from ${price}</Price>
           <Button onClick={onAddPizza}>
-            <span>Add</span>
+            <span>+ Add</span> {quantity > 0 && `(${quantity})`}
           </Button>
         </BottomSection>
       </Details>
