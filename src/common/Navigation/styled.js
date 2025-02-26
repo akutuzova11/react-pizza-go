@@ -149,29 +149,22 @@ export const Item = styled.li`
   background-color: ${({ theme }) => theme.color.lightgray};
   border-radius: 30px;
   padding: 15px 0;
-
-  &:hover,
-  &:focus {
-    background-color: ${({ theme }) => theme.color.black};
-    color: ${({ theme }) => theme.color.white};
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.color.black};
-    color: ${({ theme }) => theme.color.white};
-  }
 `;
 
 export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   color: ${({ theme }) => theme.color.black};
   padding: 15px 25px;
-  &:hover {
+  transition: color 0.3s ease-in-out;
+  border-radius: 30px;
+  &.active {
+    background-color: ${({ theme }) => theme.color.black};
     color: ${({ theme }) => theme.color.white};
+    pointer-events: none;
   }
 
-  &:active {
-    color: ${({ theme }) => theme.color.white};
+  &:hover {
+    color: ${({ theme }) => theme.color.darkorange};
   }
 `;
 
