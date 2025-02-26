@@ -1,8 +1,14 @@
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { Navigation } from "./common/Navigation";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
+import { useState, useMemo } from "react";
 import { PizzaList } from "./common/PizzaList";
 import {
   toAll,
@@ -60,89 +66,52 @@ function App() {
     },
   ]);
 
+  const [basketCount, setBasketCount] = useState(0);
+
   const availableTypes = ["thin", "traditional"];
   const availableSizes = [24, 34, 39];
 
-  const filterPizzas = (category) => {
-    if (!sortedItems) return [];
-    if (category === "All") return sortedItems;
-    return sortedItems.filter((pizza) => pizza.category === category);
+  const categoryRoutes = {
+    [toAll()]: "All",
+    [toMeatLovers()]: "Meat Lovers",
+    [toVegetarian()]: "Vegetarian",
+    [toBBQ()]: "BBQ",
+    [toSpicy()]: "Spicy",
+    [toCalzone()]: "Calzone",
   };
+
+  const onClickAddPizza = (pizzaObj) => {
+    setBasketCount((prevCount) => prevCount + 1);
+  };
+
+  function FilteredPizzaList() {
+    const location = useLocation();
+    const category = categoryRoutes[location.pathname] || "All";
+
+    const filteredPizzas = useMemo(() => {
+      return category === "All"
+        ? sortedItems
+        : sortedItems.filter((pizza) => pizza.category === category);
+    }, [category, sortedItems]);
+
+    return (
+      <PizzaList
+        pizzaData={filteredPizzas}
+        availableTypes={availableTypes}
+        availableSizes={availableSizes}
+        onClickAddPizza={onClickAddPizza}
+      />
+    );
+  }
 
   return (
     <Router>
-      <Navigation setSortedItems={setSortedItems} />
+      <Navigation setSortedItems={setSortedItems} basketCount={basketCount} />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <PizzaList
-              pizzaData={filterPizzas("All")}
-              availableTypes={availableTypes}
-              availableSizes={availableSizes}
-            />
-          }
-        />
-        <Route
-          path={toAll()}
-          element={
-            <PizzaList
-              pizzaData={filterPizzas("All")}
-              availableTypes={availableTypes}
-              availableSizes={availableSizes}
-            />
-          }
-        />
-        <Route
-          path={toMeatLovers()}
-          element={
-            <PizzaList
-              pizzaData={filterPizzas("Meat Lovers")}
-              availableTypes={availableTypes}
-              availableSizes={availableSizes}
-            />
-          }
-        />
-        <Route
-          path={toVegetarian()}
-          element={
-            <PizzaList
-              pizzaData={filterPizzas("Vegetarian")}
-              availableTypes={availableTypes}
-              availableSizes={availableSizes}
-            />
-          }
-        />
-        <Route
-          path={toBBQ()}
-          element={
-            <PizzaList
-              pizzaData={filterPizzas("BBQ")}
-              availableTypes={availableTypes}
-              availableSizes={availableSizes}
-            />
-          }
-        />
-        <Route
-          path={toSpicy()}
-          element={
-            <PizzaList
-              pizzaData={filterPizzas("Spicy")}
-              availableTypes={availableTypes}
-              availableSizes={availableSizes}
-            />
-          }
-        />
-        <Route
-          path={toCalzone()}
-          element={
-            <PizzaList
-              pizzaData={filterPizzas("Calzone")}
-              availableTypes={availableTypes}
-              availableSizes={availableSizes}
-            />
-          }
-        />
+        <Route path="/" element={<Navigate to={toAll()} replace />} />
+        {Object.keys(categoryRoutes).map((path) => (
+          <Route key={path} path={path} element={<FilteredPizzaList />} />
+        ))}
       </Routes>
     </Router>
   );
