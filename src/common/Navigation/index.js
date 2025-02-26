@@ -9,7 +9,8 @@ import {
 } from "../../routes";
 import {
   NavigationStyled,
-  Logo, LogoIcon,
+  Logo,
+  LogoIcon,
   Text,
   BasketButton,
   Payment,
@@ -24,7 +25,7 @@ import {
   SortSection,
 } from "./styled";
 
-export const Navigation = ({ setSortedItems }) => {
+export const Navigation = ({ setSortedItems, basketCount }) => {
   return (
     <NavigationStyled>
       <Logo to={toAll()}>
@@ -35,7 +36,7 @@ export const Navigation = ({ setSortedItems }) => {
         <Payment>10 euros</Payment>
         <VerticalLine />
         <BasketIcon />
-        <OrdersNumber>3</OrdersNumber>
+        <OrdersNumber>{basketCount}</OrdersNumber>
       </BasketButton>
       <HorizontalLine />
       <MenuGrouped>
