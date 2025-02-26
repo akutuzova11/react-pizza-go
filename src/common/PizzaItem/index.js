@@ -44,7 +44,7 @@ export const PizzaItem = ({
       size: availableSizes[activeSize],
       type: availableTypes[activeType],
     };
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 1200));
     onClickAddPizza(pizzaObj);
     setLoading(false);
   };

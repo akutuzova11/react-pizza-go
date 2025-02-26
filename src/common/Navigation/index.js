@@ -25,11 +25,22 @@ import {
   SortSection,
 } from "./styled";
 
-export const Navigation = ({ setSortedItems, basket }) => {
+export const Navigation = ({ setSortedItems, basket, items }) => {
   const totalItemsInBasket = Object.values(basket).reduce(
     (acc, quantity) => acc + quantity,
     0
   );
+
+  const totalPrice = Object.keys(basket).reduce((total, pizzaId) => {
+    const pizza = items.find((item) => item.id === parseInt(pizzaId));
+    if (pizza) {
+      const quantity = basket[pizzaId];
+      total += pizza.price * quantity;
+    }
+    return total;
+  }, 0);
+
+
   return (
     <NavigationStyled>
       <Logo to={toAll()}>
@@ -37,7 +48,7 @@ export const Navigation = ({ setSortedItems, basket }) => {
       </Logo>
       <Text>the most delicious pizza in the universe</Text>
       <BasketButton>
-        <Payment>10 euros</Payment>
+        <Payment>{totalPrice.toFixed(2)} euros</Payment>
         <VerticalLine />
         <BasketIcon />
         <OrdersNumber>{totalItemsInBasket}</OrdersNumber>

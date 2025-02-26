@@ -90,6 +90,16 @@ function App() {
     });
   };
 
+  const calculateTotalPrice = () => {
+    if (Object.keys(basket).length === 0) return 0;
+
+    return Object.keys(basket).reduce((total, pizzaId) => {
+      const pizza = sortedItems.find((item) => item.id === parseInt(pizzaId));
+      const quantity = basket[pizzaId];
+      return total + pizza.price * quantity;
+    }, 0);
+  };
+
   function FilteredPizzaList() {
     const location = useLocation();
     const category = categoryRoutes[location.pathname] || "All";
@@ -113,7 +123,12 @@ function App() {
 
   return (
     <Router>
-      <Navigation setSortedItems={setSortedItems} basket={basket} />
+      <Navigation
+        setSortedItems={setSortedItems}
+        basket={basket}
+        items={sortedItems}
+        totalPrice={calculateTotalPrice()}
+      />
       <Routes>
         <Route path="/" element={<Navigate to={toAll()} replace />} />
         {Object.keys(categoryRoutes).map((path) => (
