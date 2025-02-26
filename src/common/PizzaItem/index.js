@@ -11,6 +11,8 @@ import {
   Price,
   Button,
   PizzaImageWrapper,
+  LoadingIcon,
+  Quantity,
 } from "./styled";
 
 export const PizzaItem = ({
@@ -21,15 +23,19 @@ export const PizzaItem = ({
   availableTypes = [],
   availableSizes = [],
   onClickAddPizza,
+  basket,
 }) => {
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
-  const [quantity, setQuantity] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const quantity = basket[id] || 0;
 
   const onSelectType = (index) => setActiveType(index);
   const onSelectSize = (index) => setActiveSize(index);
 
-  const onAddPizza = () => {
+  const onAddPizza = async () => {
+    setLoading(true);
+
     const pizzaObj = {
       id,
       name,
@@ -38,8 +44,9 @@ export const PizzaItem = ({
       size: availableSizes[activeSize],
       type: availableTypes[activeType],
     };
-    setQuantity(quantity + 1);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
     onClickAddPizza(pizzaObj);
+    setLoading(false);
   };
 
   return (
@@ -77,8 +84,15 @@ export const PizzaItem = ({
         </Selector>
         <BottomSection>
           <Price>from ${price}</Price>
-          <Button onClick={onAddPizza}>
-            <span>+ Add</span> {quantity > 0 && `(${quantity})`}
+          <Button onClick={onAddPizza} disabled={loading} $loading={loading}>
+            {loading ? (
+              <LoadingIcon />
+            ) : (
+              <>
+                <span>+ Add</span>
+                {quantity > 0 && <Quantity>{quantity}</Quantity>}
+              </>
+            )}
           </Button>
         </BottomSection>
       </Details>
