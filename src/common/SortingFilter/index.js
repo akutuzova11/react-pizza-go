@@ -4,6 +4,11 @@ import { customStyles } from "./customStyles";
 import { SortContainer, SortLabel } from "./styled";
 import { DropdownIndicator } from "./DropdownIndicator";
 
+const options = [
+  { value: "nameAsc", label: "Name (A-Z)" },
+  { value: "priceAsc", label: "Price (Low to High)" },
+];
+
 export const SortingFilter = ({ setSortedItems }) => {
   const [sortOption, setSortOption] = useState("nameAsc");
 
@@ -21,14 +26,8 @@ export const SortingFilter = ({ setSortedItems }) => {
             return 0;
         }
       });
-      return sorted;
     });
   };
-
-  const options = [
-    { value: "nameAsc", label: "Name (A-Z)" },
-    { value: "priceAsc", label: "Price (Low to High)" },
-  ];
 
   return (
     <SortContainer>
