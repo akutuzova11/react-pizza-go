@@ -5,9 +5,10 @@ export const theme = {
     yellow: "#FFDF8C",
     lightblue: "#74D5DE",
     darkblue: "#56CAD8",
-    lightorange: "#DE8E68",
+    lightorange: "#FF8A50",
     darkorange: "#FE5F1E",
     darkgray: "#777777",
+    red: "#D80000",
     black: "#000000",
   },
 
