@@ -1,139 +1,46 @@
-import { Provider } from "react-redux";
-import { store } from "./store";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigation } from "./common/Navigation";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
-  useLocation,
 } from "react-router-dom";
-import { useState, useMemo } from "react";
-import { PizzaList } from "./common/PizzaList";
-import {
-  toAll,
-  toMeatLovers,
-  toVegetarian,
-  toBBQ,
-  toSpicy,
-  toCalzone,
-} from "./routes";
-import Pizza from "./images/pizza.png";
+import { useState } from "react";
+import { BasketPage } from "./common/BasketPage";
+import { selectTotalPrice, selectTotalQuantity } from "./features/basketSlice";
+import { selectPizzas } from "./features/pizzaSlice";
+import { toAll } from "./routes";
+import handleCategoryRoutes from "./handleCategoryRoutes";
 
 function App() {
-  const [sortedItems, setSortedItems] = useState([
-    {
-      id: 1,
-      name: "Meat Lovers",
-      imageUrl: Pizza,
-      price: 12,
-      category: "Meat Lovers",
-    },
-    {
-      id: 2,
-      name: "Carbonara",
-      imageUrl: Pizza,
-      price: 11,
-      category: "Meat Lovers",
-    },
-    {
-      id: 3,
-      name: "BBQ Bacon Burger",
-      imageUrl: Pizza,
-      price: 13,
-      category: "BBQ",
-    },
-    {
-      id: 4,
-      name: "Veggie Supreme",
-      imageUrl: Pizza,
-      price: 10,
-      category: "Vegetarian",
-    },
-    {
-      id: 5,
-      name: "Pepperoni",
-      imageUrl: Pizza,
-      price: 9,
-      category: "Meat Lovers",
-    },
-    {
-      id: 6,
-      name: "Margherita",
-      imageUrl: Pizza,
-      price: 8,
-      category: "Vegetarian",
-    },
-  ]);
+  const dispatch = useDispatch();
 
-  const [basket, setBasket] = useState({});
+  const pizzas = useSelector(selectPizzas);
 
-  const availableTypes = ["thin", "traditional"];
-  const availableSizes = [24, 34, 39];
+  const totalPrice = useSelector(selectTotalPrice);
+  const totalItemsInBasket = useSelector(selectTotalQuantity);
 
-  const categoryRoutes = {
-    [toAll()]: "All",
-    [toMeatLovers()]: "Meat Lovers",
-    [toVegetarian()]: "Vegetarian",
-    [toBBQ()]: "BBQ",
-    [toSpicy()]: "Spicy",
-    [toCalzone()]: "Calzone",
+  const [sortedItems, setSortedItems] = useState(pizzas);
+
+  const handleSortChange = (sorted) => {
+    setSortedItems(sorted);
+    dispatch(setSortedItems(sorted)); //
   };
 
-  const onClickAddPizza = (pizzaObj) => {
-    setBasket((prevBasket) => {
-      const updatedBasket = {
-        ...prevBasket,
-        [pizzaObj.id]: (prevBasket[pizzaObj.id] || 0) + 1,
-      };
-      return updatedBasket;
-    });
-  };
-
-  const calculateTotalPrice = () => {
-    if (Object.keys(basket).length === 0) return 0;
-
-    return Object.keys(basket).reduce((total, pizzaId) => {
-      const pizza = sortedItems.find((item) => item.id === parseInt(pizzaId));
-      const quantity = basket[pizzaId];
-      return total + pizza.price * quantity;
-    }, 0);
-  };
-
-  function FilteredPizzaList() {
-    const location = useLocation();
-    const category = categoryRoutes[location.pathname] || "All";
-
-    const filteredPizzas = useMemo(() => {
-      return category === "All"
-        ? sortedItems
-        : sortedItems.filter((pizza) => pizza.category === category);
-    }, [category, sortedItems]);
-
-    return (
-      <PizzaList
-        pizzaData={filteredPizzas}
-        availableTypes={availableTypes}
-        availableSizes={availableSizes}
-        onClickAddPizza={onClickAddPizza}
-        basket={basket}
-      />
-    );
-  }
+  const basketItems = useSelector((state) => state.basket.items);
 
   return (
     <Router>
+      <BasketPage basketItems={basketItems} />
       <Navigation
-        setSortedItems={setSortedItems}
-        basket={basket}
-        items={sortedItems}
-        totalPrice={calculateTotalPrice()}
+        setSortedItems={handleSortChange}
+        totalPrice={totalPrice}
+        totalItemsInBasket={totalItemsInBasket}
       />
       <Routes>
         <Route path="/" element={<Navigate to={toAll()} replace />} />
-        {Object.keys(categoryRoutes).map((path) => (
-          <Route key={path} path={path} element={<FilteredPizzaList />} />
-        ))}
+        {handleCategoryRoutes(sortedItems)}
       </Routes>
     </Router>
   );
