@@ -1,4 +1,4 @@
-export const toAll = () => "/all";
+export const toAll = () => "/";
 export const toMeatLovers = () => "/meatlovers";
 export const toVegetarian = () => "/vegetarian";
 export const toBBQ = () => "/bbq";
