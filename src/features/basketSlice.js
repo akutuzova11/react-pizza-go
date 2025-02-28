@@ -46,7 +46,16 @@ const basketSlice = createSlice({
     decreaseQuantity: (state, action) => {
       const { id, type, size } = action.payload;
       const item = findItemInBasket(state, id, type, size);
-      if (item && item.quantity > 1) item.quantity -= 1;
+
+      if (item) {
+        if (item.quantity === 1) {
+          state.items = state.items.filter(
+            (i) => !(i.id === id && i.type === type && i.size === size)
+          );
+        } else {
+          item.quantity -= 1;
+        }
+      }
     },
 
     clearBasket: (state) => {

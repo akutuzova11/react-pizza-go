@@ -70,20 +70,26 @@ export const BasketPage = () => {
                 </div>
                 <QuantityControls>
                   <QuantityButton
-                    onClick={() => dispatch(decreaseQuantity(id))}
+                    onClick={() =>
+                      dispatch(decreaseQuantity({ id, type, size }))
+                    }
                   >
                     -
                   </QuantityButton>
                   <OrdersNumber>{quantity}</OrdersNumber>
                   <QuantityButton
-                    onClick={() => dispatch(increaseQuantity(id))}
+                    onClick={() =>
+                      dispatch(increaseQuantity({ id, type, size }))
+                    }
                   >
                     +
                   </QuantityButton>
                 </QuantityControls>
 
                 <Price>{price}</Price>
-                <DeleteButton onClick={() => dispatch(removeFromBasket(id))}>
+                <DeleteButton
+                  onClick={() => dispatch(removeFromBasket({ id, type, size }))}
+                >
                   x
                 </DeleteButton>
               </BasketItemDetails>
