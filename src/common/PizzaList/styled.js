@@ -3,14 +3,14 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   margin-top: 32px;
   display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 32px;
   justify-items: center;
   align-items: center;
   text-align: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.laptop}px) {
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 `;
 
