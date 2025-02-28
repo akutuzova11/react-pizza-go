@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { usePizzaItem } from "../../hooks/usePizzaItem";
+import { getItemQuantity } from "../utils/basketUtils";
 import {
   PizzaContainer,
   PizzaImage,
@@ -22,32 +24,31 @@ export const PizzaItem = ({
   price,
   availableTypes = [],
   availableSizes = [],
-  onClickAddPizza,
-  basket,
 }) => {
-  const [activeType, setActiveType] = useState(0);
-  const [activeSize, setActiveSize] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const quantity = basket[id] || 0;
+  const {
+    activeType,
+    activeSize,
+    loading,
+    onSelectType,
+    onSelectSize,
+    onAddPizza,
+  } = usePizzaItem({
+    id,
+    availableTypes,
+    availableSizes,
+    price,
+    name,
+    imageUrl,
+  });
 
-  const onSelectType = (index) => setActiveType(index);
-  const onSelectSize = (index) => setActiveSize(index);
+  const basket = useSelector((state) => state.basket);
 
-  const onAddPizza = async () => {
-    setLoading(true);
-
-    const pizzaObj = {
-      id,
-      name,
-      imageUrl,
-      price,
-      size: availableSizes[activeSize],
-      type: availableTypes[activeType],
-    };
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-    onClickAddPizza(pizzaObj);
-    setLoading(false);
-  };
+  const quantity = getItemQuantity(
+    basket,
+    id,
+    availableTypes[activeType],
+    availableSizes[activeSize]
+  );
 
   return (
     <PizzaContainer>
