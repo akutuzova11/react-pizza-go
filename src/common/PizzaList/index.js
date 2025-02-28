@@ -9,6 +9,7 @@ export const PizzaList = ({
   availableTypes,
   basket,
 }) => {
+  
   if (!pizzaData || pizzaData.length === 0) {
     return <div>No pizzas available</div>;
   }
@@ -23,7 +24,7 @@ export const PizzaList = ({
             name={name}
             imageUrl={imageUrl || Pizza}
             price={price}
-            availableTypes={availableTypes} // Pass types
+            availableTypes={availableTypes}
             availableSizes={availableSizes}
             onClickAddPizza={onClickAddPizza}
             basket={basket}
