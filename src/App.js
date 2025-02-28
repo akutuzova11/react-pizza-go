@@ -25,7 +25,7 @@ function App() {
 
   const handleSortChange = (sorted) => {
     setSortedItems(sorted);
-    dispatch(setSortedItems(sorted)); //
+    dispatch(setSortedItems(sorted));
   };
 
   const basketItems = useSelector((state) => state.basket.items);
