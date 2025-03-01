@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { toAll } from "../../routes";
 import {
   NavigationStyled,
@@ -7,15 +6,11 @@ import {
   Text,
   HorizontalLine,
 } from "./styled";
-import {
-  selectTotalPrice,
-  selectTotalQuantity,
-} from "../../features/basketSlice";
 import { BasketSummary } from "./components/BasketSummary";
 import { Menu } from "./components/Menu";
 import { useBasket } from "../../hooks/useBasket";
 
-export const Navigation = ({ setSortedItems }) => {
+export const Navigation = ({ setSortedItems, handleBasketClick }) => {
   const { totalPrice, totalQuantity } = useBasket();
 
   return (
@@ -27,6 +22,7 @@ export const Navigation = ({ setSortedItems }) => {
       <BasketSummary
         totalPrice={totalPrice}
         totalItemsInBasket={totalQuantity}
+        handleBasketClick={handleBasketClick}
       />
       <HorizontalLine />
       <Menu setSortedItems={setSortedItems} />

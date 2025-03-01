@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Logo,
   LogoIcon,
@@ -36,11 +38,16 @@ import {
   clearBasket,
 } from "../../features/basketSlice";
 import { toAll } from "../../routes";
-import { useDispatch, useSelector } from "react-redux";
 
-export const BasketPage = () => {
+export const BasketPage = ({ setCurrentPage }) => {
   const dispatch = useDispatch();
   const basketItems = useSelector((state) => state.basket.items);
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    setCurrentPage("home");
+    navigate("/");
+  };
 
   return (
     <>
@@ -122,7 +129,7 @@ export const BasketPage = () => {
           </TotalCost>
         </TotalWrapper>
         <ButtonsWrapper>
-          <RedirectButton>{"< Go back"}</RedirectButton>
+          <RedirectButton onClick={handleGoBack}>{"< Go back"}</RedirectButton>
           <PaymentButton>Order and pay</PaymentButton>
         </ButtonsWrapper>
       </Wrapper>

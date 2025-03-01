@@ -5,10 +5,17 @@ import {
   VerticalLine,
   OrdersNumber,
 } from "../styled";
+export const BasketSummary = ({
+  totalPrice,
+  totalItemsInBasket,
+  handleBasketClick,
+}) => {
+  const handleClick = () => {
+    handleBasketClick();
+  };
 
-export const BasketSummary = ({ totalPrice, totalItemsInBasket }) => {
   return (
-    <BasketButton>
+    <BasketButton onClick={handleClick}>
       <Payment>{totalPrice.toFixed(2)} €</Payment>
       <VerticalLine />
       <BasketIcon />

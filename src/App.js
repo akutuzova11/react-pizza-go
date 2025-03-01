@@ -17,7 +17,6 @@ function App() {
   const dispatch = useDispatch();
 
   const pizzas = useSelector(selectPizzas);
-
   const totalPrice = useSelector(selectTotalPrice);
   const totalItemsInBasket = useSelector(selectTotalQuantity);
 
@@ -28,19 +27,29 @@ function App() {
     dispatch(setSortedItems(sorted));
   };
 
+  const [currentPage, setCurrentPage] = useState("home");
+
   const basketItems = useSelector((state) => state.basket.items);
+
+  const handleBasketClick = () => {
+    setCurrentPage("basket");
+  };
 
   return (
     <Router basename="/react-pizza-go">
-      <BasketPage basketItems={basketItems} />
-      <Navigation
-        setSortedItems={handleSortChange}
-        totalPrice={totalPrice}
-        totalItemsInBasket={totalItemsInBasket}
-      />
+      {currentPage === "home" ? (
+        <Navigation
+          setSortedItems={handleSortChange}
+          totalPrice={totalPrice}
+          totalItemsInBasket={totalItemsInBasket}
+          handleBasketClick={handleBasketClick}
+        />
+      ) : (
+        <BasketPage basketItems={basketItems} setCurrentPage={setCurrentPage} />
+      )}
       <Routes>
         <Route path="/" element={<Navigate to={toAll()} replace />} />
-        {handleCategoryRoutes(sortedItems)}
+        {currentPage === "home" && handleCategoryRoutes(sortedItems)}
       </Routes>
     </Router>
   );
