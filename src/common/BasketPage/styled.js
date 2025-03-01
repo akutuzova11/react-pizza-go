@@ -8,10 +8,13 @@ export const Logo = styled(NavLink)`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  transition: transform 0.3s ease-in-out;
 
   &:hover {
-    transform: scale(1.05);
+    transform: translateY(-3px);
+  }
+
+  &:active {
+    transform: translateY(1px);
   }
 `;
 
@@ -84,6 +87,9 @@ export const HeaderText = styled.h1`
 export const CleanBasketIcon = styled(Trash)`
   width: 20px;
   height: 20px;
+  path {
+    stroke: ${({ theme }) => theme.color.darkgray};
+  }
 `;
 
 export const CleanBasketText = styled.p`
@@ -277,4 +283,11 @@ export const PaymentButton = styled.button`
     transform: translateY(1px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
+`;
+
+export const HorizontalLine = styled.div`
+  width: 100%;
+  margin: 20px auto; /* Centers it horizontally */
+  border: none;
+  border-top: 1px solid ${({ theme }) => theme.color.lightgray};
 `;
