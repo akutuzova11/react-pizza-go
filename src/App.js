@@ -31,7 +31,7 @@ function App() {
   const basketItems = useSelector((state) => state.basket.items);
 
   return (
-    <Router>
+    <Router basename="/react-pizza-go">
       <BasketPage basketItems={basketItems} />
       <Navigation
         setSortedItems={handleSortChange}
