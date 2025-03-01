@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Logo,
   LogoIcon,
@@ -26,6 +27,7 @@ import {
   QuantityButton,
   QuantityControls,
   ButtonsWrapper,
+  HorizontalLine,
 } from "./styled";
 import {
   increaseQuantity,
@@ -46,6 +48,7 @@ export const BasketPage = () => {
         <LogoIcon />
       </Logo>
       <Text>the fastest pizza in town</Text>
+      <HorizontalLine />
       <Wrapper>
         <Header>
           <HeaderContent>
@@ -57,42 +60,48 @@ export const BasketPage = () => {
             <CleanBasketText>Delete all</CleanBasketText>
           </CleanBasket>
         </Header>
+        <HorizontalLine />
         <BasketList>
           {basketItems.map(
             ({ id, name, imageUrl, type, size, quantity, price }, index) => (
-              <BasketItemDetails key={`${id}-${index}`}>
-                <PizzaImage src={imageUrl} alt={name} />
-                <div>
-                  <BasketItem>{name}</BasketItem>
-                  <PizzaDetails>
-                    {type}, {size} cm
-                  </PizzaDetails>
-                </div>
-                <QuantityControls>
-                  <QuantityButton
-                    onClick={() =>
-                      dispatch(decreaseQuantity({ id, type, size }))
-                    }
-                  >
-                    -
-                  </QuantityButton>
-                  <OrdersNumber>{quantity}</OrdersNumber>
-                  <QuantityButton
-                    onClick={() =>
-                      dispatch(increaseQuantity({ id, type, size }))
-                    }
-                  >
-                    +
-                  </QuantityButton>
-                </QuantityControls>
+              <React.Fragment key={`${id}-${index}`}>
+                <BasketItemDetails>
+                  <PizzaImage src={imageUrl} alt={name} />
+                  <div>
+                    <BasketItem>{name}</BasketItem>
+                    <PizzaDetails>
+                      {type}, {size} cm
+                    </PizzaDetails>
+                  </div>
+                  <QuantityControls>
+                    <QuantityButton
+                      onClick={() =>
+                        dispatch(decreaseQuantity({ id, type, size }))
+                      }
+                    >
+                      -
+                    </QuantityButton>
+                    <OrdersNumber>{quantity}</OrdersNumber>
+                    <QuantityButton
+                      onClick={() =>
+                        dispatch(increaseQuantity({ id, type, size }))
+                      }
+                    >
+                      +
+                    </QuantityButton>
+                  </QuantityControls>
 
-                <Price>{price}</Price>
-                <DeleteButton
-                  onClick={() => dispatch(removeFromBasket({ id, type, size }))}
-                >
-                  x
-                </DeleteButton>
-              </BasketItemDetails>
+                  <Price>{price} €</Price>
+                  <DeleteButton
+                    onClick={() =>
+                      dispatch(removeFromBasket({ id, type, size }))
+                    }
+                  >
+                    x
+                  </DeleteButton>
+                </BasketItemDetails>
+                {index < basketItems.length - 1 && <HorizontalLine />}
+              </React.Fragment>
             )
           )}
         </BasketList>
