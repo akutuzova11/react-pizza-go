@@ -7,6 +7,18 @@ const initialState = {
   totalQuantity: 0,
 };
 
+const calculateTotals = (state) => {
+  state.totalPrice = state.items.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  state.totalQuantity = state.items.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+};
+
 const basketSlice = createSlice({
   name: "basket",
   initialState,
@@ -28,6 +40,7 @@ const basketSlice = createSlice({
           quantity: 1,
         });
       }
+      calculateTotals(state);
     },
 
     removeFromBasket: (state, action) => {
@@ -35,12 +48,14 @@ const basketSlice = createSlice({
       state.items = state.items.filter(
         (item) => !(item.id === id && item.type === type && item.size === size)
       );
+      calculateTotals(state);
     },
 
     increaseQuantity: (state, action) => {
       const { id, type, size } = action.payload;
       const item = findItemInBasket(state, id, type, size);
       if (item) item.quantity += 1;
+      calculateTotals(state);
     },
 
     decreaseQuantity: (state, action) => {
@@ -56,24 +71,13 @@ const basketSlice = createSlice({
           item.quantity -= 1;
         }
       }
+      calculateTotals(state);
     },
 
     clearBasket: (state) => {
       state.items = [];
+      calculateTotals(state);
     },
-  },
-
-  extraReducers: (builder) => {
-    builder.addDefaultCase((state) => {
-      state.totalPrice = state.items.reduce(
-        (total, item) => total + item.price * item.quantity,
-        0
-      );
-      state.totalQuantity = state.items.reduce(
-        (total, item) => total + item.quantity,
-        0
-      );
-    });
   },
 });
 
