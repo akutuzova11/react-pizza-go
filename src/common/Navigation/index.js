@@ -13,10 +13,10 @@ import {
 } from "../../features/basketSlice";
 import { BasketSummary } from "./components/BasketSummary";
 import { Menu } from "./components/Menu";
+import { useBasket } from "../../hooks/useBasket";
 
 export const Navigation = ({ setSortedItems }) => {
-  const totalItemsInBasket = useSelector(selectTotalQuantity);
-  const totalPrice = useSelector(selectTotalPrice);
+  const { totalPrice, totalQuantity } = useBasket();
 
   return (
     <NavigationStyled>
@@ -26,7 +26,7 @@ export const Navigation = ({ setSortedItems }) => {
       <Text>the most delicious pizza in the universe</Text>
       <BasketSummary
         totalPrice={totalPrice}
-        totalItemsInBasket={totalItemsInBasket}
+        totalItemsInBasket={totalQuantity}
       />
       <HorizontalLine />
       <Menu setSortedItems={setSortedItems} />
