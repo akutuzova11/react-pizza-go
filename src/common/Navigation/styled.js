@@ -51,27 +51,6 @@ export const Text = styled.p`
   }
 `;
 
-export const BasketButton = styled.div`
-  padding: 10px 20px;
-  margin-top: 80px;
-  margin-right: 60px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: ${({ theme }) => theme.color.darkorange};
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
-    position: relative;
-    margin: auto;
-    padding: 10px 82px;
-  }
-`;
-
 export const Payment = styled.span`
   font-size: 16px;
   color: ${({ theme }) => theme.color.white};
@@ -106,6 +85,47 @@ export const OrdersNumber = styled.span`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
     font-size: 14px;
+  }
+`;
+
+export const BasketButton = styled.div`
+  padding: 10px 20px;
+  margin-top: 80px;
+  margin-right: 60px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: ${({ theme }) => theme.color.darkorange};
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.lightorange};
+    border: 1px solid ${({ theme }) => theme.color.lightorange};
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    ${Payment}, ${VerticalLine}, ${OrdersNumber} {
+      color: ${({ theme }) => theme.color.black};
+    }
+    ${BasketIcon} path {
+      stroke: ${({ theme }) => theme.color.black};
+    }
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+    position: relative;
+    margin: auto;
+    padding: 10px 82px;
   }
 `;
 
