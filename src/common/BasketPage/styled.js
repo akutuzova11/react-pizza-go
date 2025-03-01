@@ -45,7 +45,7 @@ export const Text = styled.p`
 `;
 
 export const Wrapper = styled.div`
-  margin: 80px 250px;
+  margin: 40px 100px;
   display: flex;
   flex-direction: column;
 
@@ -126,9 +126,10 @@ export const BasketList = styled.ul`
 `;
 
 export const BasketItemDetails = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 100px 1fr 100px 60px 40px;
+  gap: 80px;
   align-items: center;
-  justify-content: space-between;
 `;
 
 export const PizzaImage = styled.img`
@@ -136,6 +137,7 @@ export const PizzaImage = styled.img`
   height: auto;
   display: block;
   max-height: 80px;
+  grid-column: 1;
 `;
 
 export const BasketItem = styled.li`
@@ -155,6 +157,8 @@ export const QuantityControls = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+  grid-column: 3;
+  justify-self: center;
 `;
 
 export const QuantityButton = styled.p`
@@ -179,12 +183,15 @@ export const OrdersNumber = styled.p`
   font-size: 22px;
   font-weight: 500;
   letter-spacing: 1%;
+  white-space: nowrap;
 `;
 
 export const Price = styled.p`
   font-size: 22px;
   font-weight: 500;
   letter-spacing: 1%;
+  grid-column: 4;
+  justify-self: center;
 `;
 
 export const DeleteButton = styled.button`
@@ -199,6 +206,8 @@ export const DeleteButton = styled.button`
   font-size: 18px;
   cursor: pointer;
   background-color: ${({ theme }) => theme.color.white};
+  grid-column: 5;
+  justify-self: center;
 
   &:hover {
     background-color: ${({ theme }) => theme.color.red};
