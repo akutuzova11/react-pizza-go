@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToBasket } from "../features/basketSlice";
+import { addToBasket } from "../../features/basketSlice";
 
 export const usePizzaItem = ({
   id,
@@ -29,7 +29,7 @@ export const usePizzaItem = ({
       size: availableSizes[activeSize],
       type: availableTypes[activeType],
     };
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     dispatch(addToBasket(pizzaObj));
     setLoading(false);
   };

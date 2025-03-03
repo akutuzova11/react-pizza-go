@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { selectPizzas } from "../features/pizzaSlice";
+import { selectPizzas } from "../../features/pizzaSlice";
 import { useLocation } from "react-router-dom";
-import categoryRoutes from "../handleCategoryRoutes";
+import categoryRoutes from "../../handleCategoryRoutes";
 
 export const useFilteredPizzas = () => {
   const location = useLocation();
