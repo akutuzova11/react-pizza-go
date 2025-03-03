@@ -123,6 +123,13 @@ export const CleanBasket = styled.button`
 export const BasketList = styled.ul`
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+
+  ${Wrapper} & 
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const BasketItemDetails = styled.div`
