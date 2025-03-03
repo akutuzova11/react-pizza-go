@@ -65,7 +65,12 @@ export const Header = styled.h1`
   font-weight: 500;
   letter-spacing: 1%;
   margin: 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+    font-size: 20px;
+  }
 `;
+
 export const Capture = styled.p`
   font-size: 18px;
   font-weight: 500;
@@ -73,13 +78,24 @@ export const Capture = styled.p`
   line-height: 1.5;
   color: ${({ theme }) => theme.color.darkgray};
   margin: 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+    font-size: 12px;
+  }
 `;
+
 export const Image = styled.img.attrs({
   src: EmptyBasket,
 })`
   width: 300px;
   height: 255px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+      width: 200px;
+  height: 170px;
+  }
 `;
+
 export const Button = styled.p`
   background-color: ${({ theme }) => theme.color.black};
   color: ${({ theme }) => theme.color.white};

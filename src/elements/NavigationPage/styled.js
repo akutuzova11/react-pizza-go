@@ -90,6 +90,7 @@ export const OrdersNumber = styled.span`
 
 export const BasketButton = styled.div`
   padding: 10px 20px;
+  height: 50px;
   margin-top: 80px;
   margin-right: 60px;
   position: absolute;
@@ -102,6 +103,7 @@ export const BasketButton = styled.div`
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  text-wrap: nowrap;
 
   &:hover {
     background-color: ${({ theme }) => theme.color.lightorange};
@@ -125,7 +127,8 @@ export const BasketButton = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
     position: relative;
     margin: auto;
-    padding: 10px 82px;
+    padding: 10px 90px;
+    height: 40px;
   }
 `;
 
@@ -155,6 +158,7 @@ export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-top: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.laptop}px) {
     align-items: center;
@@ -169,6 +173,13 @@ export const Item = styled.li`
   background-color: ${({ theme }) => theme.color.lightgray};
   border-radius: 30px;
   padding: 15px 0;
+  height: 50px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+    padding: 10px 0;
+    height: 40px;
+    font-size: 14px;
+  }
 `;
 
 export const StyledNavLink = styled(NavLink)`
@@ -185,6 +196,10 @@ export const StyledNavLink = styled(NavLink)`
 
   &:hover {
     color: ${({ theme }) => theme.color.darkorange};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+    padding: 10px 15px;
   }
 `;
 

@@ -131,7 +131,7 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
+  height: 50px;
   width: 140px;
 
   &:hover {
@@ -142,6 +142,11 @@ export const Button = styled.button`
       background-color: ${({ theme }) => theme.color.white};
       color: ${({ theme }) => theme.color.darkorange};
     }
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileSmall}px) {
+    width: 120px;
+    height: 40px;
   }
 `;
 

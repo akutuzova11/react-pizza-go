@@ -19,4 +19,9 @@ export const Header = styled.h1`
   font-weight: 500;
   letter-spacing: 1%;
   margin: 16px 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileLarge}px) {
+    margin-top: 32px;
+    text-align: center;
+  }
 `;
