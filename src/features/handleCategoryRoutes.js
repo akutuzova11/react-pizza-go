@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom";
-import { FilteredPizzaList } from "./components/FilteredPizzaList";
+import { PizzaList } from "../elements/PizzaList";
 import {
   toAll,
   toMeatLovers,
@@ -7,8 +7,8 @@ import {
   toBBQ,
   toSpicy,
   toCalzone,
-} from "./routes";
-import { useBasket } from "./hooks/useBasket";
+} from "../core/routes";
+import { useBasket } from "../hooks/basket/useBasket";
 import { useSelector } from "react-redux";
 
 const categoryRoutes = {
@@ -26,7 +26,6 @@ const BasketProvider = ({ render }) => {
 };
 
 function handleCategoryRoutes(filterCriteria) {
-
   return (
     <>
       {Object.keys(categoryRoutes).map((path) => (
@@ -34,19 +33,20 @@ function handleCategoryRoutes(filterCriteria) {
           key={path}
           path={path}
           element={
-            <BasketProvider render={(basket) => (
-            <FilteredPizzaList
-              category={categoryRoutes[path]}
-              filterCriteria={filterCriteria}
-              basket={basket}
-              />
-            )}
-          />
-        }
-      />
-    ))}
-  </>
-);
+            <BasketProvider
+              render={(basket) => (
+                <PizzaList
+                  category={categoryRoutes[path]}
+                  filterCriteria={filterCriteria}
+                  basket={basket}
+                />
+              )}
+            />
+          }
+        />
+      ))}
+    </>
+  );
 }
 
 export default handleCategoryRoutes;
