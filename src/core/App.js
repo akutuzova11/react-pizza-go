@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Navigation } from "../elements/Navigation";
+import { NavigationPage } from "../elements/NavigationPage";
 import {
   Route,
   Routes,
@@ -37,7 +37,7 @@ function App() {
   return (
     <>
       {location.pathname !== "/basket" && (
-        <Navigation
+        <NavigationPage
           setSortedItems={handleSortChange}
           totalPrice={totalPrice}
           totalItemsInBasket={totalItemsInBasket}
