@@ -8,7 +8,6 @@ import {
   toSpicy,
   toCalzone,
 } from "../core/routes";
-import { useBasket } from "../hooks/basket/useBasket";
 import { useSelector } from "react-redux";
 
 const categoryRoutes = {

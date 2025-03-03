@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   Logo,
   LogoIcon,
@@ -17,15 +17,12 @@ import { BasketSummary } from "./components/BasketSummary";
 import { BasketHeader } from "./components/BasketHeader";
 import { useBasket } from "../../hooks/basket/useBasket";
 
-export const BasketPage = ({ setCurrentPage }) => {
-  const dispatch = useDispatch();
+export const BasketPage = () => {
   const navigate = useNavigate();
   const basketItems = useSelector((state) => state.basket.items);
   const { totalPrice, totalQuantity } = useBasket();
-  console.log(basketItems);
 
   const handleGoBack = () => {
-    setCurrentPage("home");
     navigate("/");
   };
 
