@@ -16,6 +16,7 @@ import { toAll } from "../../core/routes";
 import { BasketSummary } from "./components/BasketSummary";
 import { BasketHeader } from "./components/BasketHeader";
 import { useBasket } from "../../hooks/basket/useBasket";
+import { EmptyBasketPage } from "../EmptyBasketPage";
 
 export const BasketPage = () => {
   const navigate = useNavigate();
@@ -25,6 +26,10 @@ export const BasketPage = () => {
   const handleGoBack = () => {
     navigate("/");
   };
+
+  if (basketItems && basketItems.length === 0) {
+    return <EmptyBasketPage />;
+  }
 
   return (
     <>
@@ -37,17 +42,16 @@ export const BasketPage = () => {
         <BasketHeader />
         <HorizontalLine />
         <BasketList>
-          {basketItems && basketItems.length > 0 ? (
-            basketItems.map((item, index) => (
+          {basketItems && basketItems.length > 0} ?
+          <>
+            {basketItems.map((item, index) => (
               <BasketItem
                 key={item.id}
                 item={item}
-                isLast={index === basketItems.length - 1}
+                $isLast={index === basketItems.length - 1}
               />
-            ))
-          ) : (
-            <div>Your basket is empty</div>
-          )}
+            ))}
+          </>
         </BasketList>
         <BasketSummary totalPrice={totalPrice} totalQuantity={totalQuantity} />
         <ButtonsWrapper>
