@@ -8,7 +8,7 @@ import {
 } from "./styled";
 import { BasketSummary } from "./components/BasketSummary";
 import { Menu } from "./components/Menu";
-import { useBasket } from "../../hooks/useBasket";
+import { useBasket } from "../../hooks/basket/useBasket";
 
 export const Navigation = ({ setSortedItems, handleBasketClick }) => {
   const { totalPrice, totalQuantity } = useBasket();

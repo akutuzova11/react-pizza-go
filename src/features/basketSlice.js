@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { findItemInBasket } from "../common/utils/basketUtils";
+import { findItemInBasket } from "../elements/utils/basketUtils";
 
 const initialState = {
   items: [],

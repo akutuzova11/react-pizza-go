@@ -1,5 +1,5 @@
-import { ReactComponent as LogoStyled } from "../../images/Logo.svg";
-import { ReactComponent as Basket } from "../../images/Basket.svg";
+import { ReactComponent as LogoStyled } from "../../images/icons/Logo.svg";
+import { ReactComponent as Basket } from "../../images/icons/Basket.svg";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 

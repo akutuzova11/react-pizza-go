@@ -1,4 +1,4 @@
-import { SortingFilter } from "../../SortingFilter";
+import { PizzaSort } from "../../PizzaList/components/PizzaSort";
 import { MenuGrouped, List, Item, StyledNavLink, SortSection } from "../styled";
 import {
   toAll,
@@ -7,7 +7,7 @@ import {
   toBBQ,
   toSpicy,
   toCalzone,
-} from "../../../routes";
+} from "../../../core/routes";
 
 export const Menu = ({ setSortedItems }) => {
   return (
@@ -33,7 +33,7 @@ export const Menu = ({ setSortedItems }) => {
         </Item>
       </List>
       <SortSection>
-        <SortingFilter setSortedItems={setSortedItems} />
+        <PizzaSort setSortedItems={setSortedItems} />
       </SortSection>
     </MenuGrouped>
   );

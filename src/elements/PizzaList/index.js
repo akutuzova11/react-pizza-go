@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { PizzaList } from "../common/PizzaList";
+import { useSelector } from "react-redux";
+import { PizzaItem } from "./components/PizzaItem";
+import { Wrapper, Header } from "./styled";
+import Pizza from "../../images/pizza.png";
 import {
   selectAvailableSizes,
   selectAvailableTypes,
   selectPizzas,
-} from "../features/pizzaSlice";
-import { useSelector } from "react-redux";
+} from "../../features/pizzaSlice";
 
-export const FilteredPizzaList = ({
+export const PizzaList = ({
   onClickAddPizza,
   basket,
   filterCriteria,
@@ -36,14 +38,30 @@ export const FilteredPizzaList = ({
 
     return sizeMatches && typeMatches && categoryMatches;
   });
+
+  if (!filteredPizzaData || filteredPizzaData.length === 0) {
+    return <div>No pizzas available</div>;
+  }
+
   return (
-    <PizzaList
-      pizzaData={filteredPizzaData}
-      availableTypes={availableTypes}
-      availableSizes={availableSizes}
-      onClickAddPizza={onClickAddPizza}
-      basket={basket}
-      handleSelectionChange={handleSelectionChange}
-    />
+    <>
+      <Header>Available Pizzas</Header>
+      <Wrapper>
+        {filteredPizzaData.map(({ id, name, imageUrl, price }) => (
+          <PizzaItem
+            key={id}
+            id={id}
+            name={name}
+            imageUrl={imageUrl || Pizza}
+            price={price}
+            availableTypes={availableTypes}
+            availableSizes={availableSizes}
+            onClickAddPizza={onClickAddPizza}
+            basket={basket}
+            handleSelectionChange={handleSelectionChange}
+          />
+        ))}
+      </Wrapper>
+    </>
   );
 };

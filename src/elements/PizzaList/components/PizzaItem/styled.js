@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import pizzaLoader from "../../images/PizzaLoader.gif";
+import pizzaLoader from "../../../../images/loading/PizzaLoader.gif";
 
 export const PizzaContainer = styled.div`
   display: grid;

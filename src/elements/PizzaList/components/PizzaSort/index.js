@@ -9,24 +9,24 @@ const options = [
   { value: "priceAsc", label: "Price (Low to High)" },
 ];
 
-export const SortingFilter = ({ setSortedItems }) => {
+export const PizzaSort = ({ setSortedItems, items }) => {
   const [sortOption, setSortOption] = useState("nameAsc");
 
   const handleSortChange = (selectedOption) => {
     setSortOption(selectedOption.value);
 
-    setSortedItems((prevItems) => {
-      const sorted = [...prevItems].sort((a, b) => {
-        switch (selectedOption.value) {
-          case "nameAsc":
-            return a.name.localeCompare(b.name);
-          case "priceAsc":
-            return a.price - b.price;
-          default:
-            return 0;
-        }
-      });
+    const sorted = [...items].sort((a, b) => {
+      switch (selectedOption.value) {
+        case "nameAsc":
+          return a.name.localeCompare(b.name);
+        case "priceAsc":
+          return a.price - b.price;
+        default:
+          return 0;
+      }
     });
+
+    setSortedItems(sorted);
   };
 
   return (

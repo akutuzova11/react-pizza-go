@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { usePizzaItem } from "../../hooks/usePizzaItem";
-import { getItemQuantity } from "../utils/basketUtils";
+import { usePizzaItem } from "../../../hooks/pizzas/usePizzaItem";
+import { getItemQuantity } from "../../utils/basketUtils";
 import {
   PizzaContainer,
   PizzaImage,
