@@ -18,7 +18,7 @@ import {
   HorizontalLine,
 } from "../styled";
 
-export const BasketItem = ({ item, isLast }) => {
+export const BasketItem = ({ item, $isLast }) => {
   const dispatch = useDispatch();
 
   const handleIncrease = () => dispatch(increaseQuantity(item));
@@ -43,7 +43,7 @@ export const BasketItem = ({ item, isLast }) => {
         <Price>{item.price} €</Price>
         <DeleteButton onClick={handleRemove}>x</DeleteButton>
       </BasketItemDetails>
-      {!isLast && <HorizontalLine />}
+      {!$isLast && <HorizontalLine />}
     </>
   );
 };
